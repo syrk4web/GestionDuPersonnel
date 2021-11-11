@@ -118,7 +118,7 @@ namespace GestionPersonnelLogin
                     ///Add new employee
                     cmd.Parameters.Add("@personnel_id", MySqlDbType.Int32).Value = getID;
                     cmd.Parameters.Add("@personnel_name", MySqlDbType.VarChar).Value = name;
-                    cmd.Parameters.Add("@personnel_firstname", MySqlDbType.VarChar).Value = firstName;
+                    cmd.Parameters.Add("@personnel_firstname", MySqlDbType.VarChar).Value = firstName.ToUpper();
                     cmd.Parameters.Add("@personnel_tel", MySqlDbType.VarChar).Value = tel;
                     cmd.Parameters.Add("@personnel_mail", MySqlDbType.VarChar).Value = mail;
                     cmd.Parameters.Add("@personnel_affectation", MySqlDbType.VarChar).Value = affectation;
@@ -154,7 +154,7 @@ namespace GestionPersonnelLogin
                     ///Modify employee
                     cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = currPersoInfo[0];
                     cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = name;
-                    cmd.Parameters.Add("@firstname", MySqlDbType.VarChar).Value = firstName;
+                    cmd.Parameters.Add("@firstname", MySqlDbType.VarChar).Value = firstName.ToUpper();
                     cmd.Parameters.Add("@tel", MySqlDbType.VarChar).Value = tel;
                     cmd.Parameters.Add("@mail", MySqlDbType.VarChar).Value = mail;
                     cmd.Parameters.Add("@affectation", MySqlDbType.VarChar).Value = affectation;
@@ -214,6 +214,184 @@ namespace GestionPersonnelLogin
                 dbConnect.Dispose();
                 dbConnect = null;
             }
+
+            public static void dbSupprPerso(string[] currPersoInfo)
+            {
+                MySqlConnection dbConnect = DBMySQLUtils.getDBConnection();
+                dbConnect.Open();
+                try
+                {
+
+                string dbQuery = "DELETE FROM bts.personnel WHERE personnel_id =@id";
+                // Création objet de commande
+                MySqlCommand cmd = new MySqlCommand();
+                //Connexion de la commande.
+                cmd.Connection = dbConnect;
+                cmd.CommandText = dbQuery;
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = currPersoInfo[0];
+                    int rowCount = cmd.ExecuteNonQuery();
+                    Console.WriteLine("Row Count affected = " + rowCount);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e);
+                    Console.WriteLine(e.StackTrace);
+                }
+                finally
+                {
+                    dbConnect.Close();
+                    dbConnect.Dispose();
+                    dbConnect = null;
+                }
+            }
+
+            public static void dbGetListAbs(string[] currPerso, ListBox listAbs)
+            {
+                MySqlConnection dbConnect = DBMySQLUtils.getDBConnection();
+                dbConnect.Open();
+                ///INSTRUCTIONS APRES DB CONNEXION
+                ///création query
+                string dbQuery = "SELECT * FROM bts.absence";
+                // Création objet de commande
+                MySqlCommand cmd = new MySqlCommand();
+                //Connexion de la commande.
+                cmd.Connection = dbConnect;
+                cmd.CommandText = dbQuery;
+                using (DbDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            if(reader[0].ToString() == currPerso[2].ToString() && reader[1].ToString() == currPerso[1])
+                            {
+                                string dateDeb = reader[2].ToString();
+                                string dateFin = reader[3].ToString();
+                                string motif = reader[4].ToString();
+                                listAbs.Items.Add("Absent du " + dateDeb + " au " + dateFin + " au motif : " + motif);
+                            }
+                            
+                        }
+                    }
+                    else
+                    {
+                        reader.Close();
+                    }
+                }
+                dbConnect.Close();
+                dbConnect.Dispose();
+                dbConnect = null;
+            }
+
+            public static void dbAbsAdd(string[] currPersoInfo, string dateDeb, string dateFin, string motif)
+            {
+                MySqlConnection dbConnect = DBMySQLUtils.getDBConnection();
+                dbConnect.Open();
+                try
+                {
+                    string dbQuery = "INSERT INTO bts.absence VALUES (@name, @firstname, @dateDeb, @dateFin, @motif)";
+                    // Création objet de commande
+                    MySqlCommand cmd = new MySqlCommand();
+                    //Connexion de la commande.
+                    cmd.Connection = dbConnect;
+                    cmd.CommandText = dbQuery;
+                    ///Add new employee
+                    cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = currPersoInfo[2];
+                    cmd.Parameters.Add("@firstname", MySqlDbType.VarChar).Value = currPersoInfo[1];
+                    cmd.Parameters.Add("@dateDeb", MySqlDbType.VarChar).Value = dateDeb;
+                    cmd.Parameters.Add("@dateFin", MySqlDbType.VarChar).Value = dateFin;
+                    cmd.Parameters.Add("@motif", MySqlDbType.VarChar).Value = motif;
+
+                    int rowCount = cmd.ExecuteNonQuery();
+
+                    Console.WriteLine("Row Count affected = " + rowCount);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e);
+                    Console.WriteLine(e.StackTrace);
+                }
+                finally
+                {
+                    dbConnect.Close();
+                    dbConnect.Dispose();
+                    dbConnect = null;
+                }
+            }
+
+            public static void dbUpdateAbs(string[] currPersoInfo, string initDateDeb, string initDateFin, string initMotif, string newDateDeb, string newDateFin, string newMotif)
+            {
+                MySqlConnection dbConnect = DBMySQLUtils.getDBConnection();
+                dbConnect.Open();
+                try
+                {
+                    string dbQuery = "UPDATE bts.absence SET dateDeb =@newDateDeb, dateFin =@newDateFin, motif =@newMotif WHERE name =@name AND firstname =@firstname AND dateDeb = @dateDeb AND dateFin =@dateFin AND motif =@motif";
+                    // Création objet de commande
+                    MySqlCommand cmd = new MySqlCommand();
+                    //Connexion de la commande.
+                    cmd.Connection = dbConnect;
+                    cmd.CommandText = dbQuery;
+                    //WHERE params
+                    cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = currPersoInfo[2];
+                    cmd.Parameters.Add("@firstname", MySqlDbType.VarChar).Value = currPersoInfo[1];
+                    cmd.Parameters.Add("@dateDeb", MySqlDbType.VarChar).Value = initDateDeb;
+                    cmd.Parameters.Add("@dateFin", MySqlDbType.VarChar).Value = initDateFin;
+                    cmd.Parameters.Add("@motif", MySqlDbType.VarChar).Value = initMotif;
+                    //NEW PARAMS
+                    cmd.Parameters.Add("@newDateDeb", MySqlDbType.VarChar).Value = newDateDeb;
+                    cmd.Parameters.Add("@newDateFin", MySqlDbType.VarChar).Value = newDateFin;
+                    cmd.Parameters.Add("@newMotif", MySqlDbType.VarChar).Value = newMotif;
+
+                    //DB EXECUTION LOGIC
+                    int rowCount = cmd.ExecuteNonQuery();
+                    Console.WriteLine("Row Count affected = " + rowCount);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e);
+                    Console.WriteLine(e.StackTrace);
+                }
+                finally
+                {
+                    dbConnect.Close();
+                    dbConnect.Dispose();
+                    dbConnect = null;
+                }
+            }
+
+            public static void dbSupprAbs(string[] currPersoInfo, string currDateDeb, string currDateFin, string currMotif)
+            {
+                MySqlConnection dbConnect = DBMySQLUtils.getDBConnection();
+                dbConnect.Open();
+                try
+                {
+                    string dbQuery = "DELETE FROM bts.absence WHERE name =@name AND firstname =@firstname AND dateDeb =@dateDeb AND dateFin =@dateFin AND motif =@motif";
+                    // Création objet de commande
+                    MySqlCommand cmd = new MySqlCommand();
+                    //Connexion de la commande.
+                    cmd.Connection = dbConnect;
+                    cmd.CommandText = dbQuery;
+                    cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = currPersoInfo[2];
+                    cmd.Parameters.Add("@firstname", MySqlDbType.VarChar).Value = currPersoInfo[1];
+                    cmd.Parameters.Add("@dateDeb", MySqlDbType.VarChar).Value = currDateDeb;
+                    cmd.Parameters.Add("@dateFin", MySqlDbType.VarChar).Value = currDateFin;
+                    cmd.Parameters.Add("@motif", MySqlDbType.VarChar).Value = currMotif;
+                    int rowCount = cmd.ExecuteNonQuery();
+                    Console.WriteLine("Row Count affected = " + rowCount);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error: " + e);
+                    Console.WriteLine(e.StackTrace);
+                }
+                finally
+                {
+                    dbConnect.Close();
+                    dbConnect.Dispose();
+                    dbConnect = null;
+                }
+            }
+
         }
 
         /// LOADING APP
@@ -245,8 +423,7 @@ namespace GestionPersonnelLogin
             
         }
 
-        ///MAIN MENU
-        
+        ///MAIN MENU       
         private void btnAddPersonnel_Click(object sender, EventArgs e)
         {
                 mainMenuDisplay(false);
@@ -279,6 +456,10 @@ namespace GestionPersonnelLogin
             if (lstPersonnel.SelectedIndex >= 0)
             {
                 mainMenuDisplay(false);
+                string currPersoStr = lstPersonnel.SelectedItem.ToString().Replace(" :", "");
+                string[] currPersoInfo = currPersoStr.Split(' ');
+                DBMySQLUtils.dbGetListAbs(currPersoInfo, lstAbs);
+                lblAbsInfo.Text = currPersoStr;
                 mainAbsMenuDisplay(true);
             }
             else
@@ -294,7 +475,10 @@ namespace GestionPersonnelLogin
         {
             if (lstPersonnel.SelectedIndex >= 0)
             {
-                ///CREER LE MENU SUPPRESSION DU PERSONNEL
+                mainMenuDisplay(false);
+                string currPersoStr = lstPersonnel.SelectedItem.ToString().Replace(" :", " ");
+                lblSupprInfoPerso.Text = currPersoStr;
+                supprMenuDisplay(true);
             }
             else
             {
@@ -324,8 +508,9 @@ namespace GestionPersonnelLogin
             ///et le titre indiqué
             if (titleAddorModif.Text.Contains("AJOUTER"))
             {
-                
                 DBMySQLUtils.dbAddListPersonnel(lstPersonnel, txtName.Text, txtFirstName.Text, txtTel.Text, txtMail.Text, lstAffectation.SelectedItem.ToString());
+
+
             }
 
             if (titleAddorModif.Text.Contains("MODIFIER"))
@@ -343,14 +528,152 @@ namespace GestionPersonnelLogin
             mainMenuDisplay(true);
             return;
 
-        }  
-      
+        }
+
+        ///MENU SUPPR
+        private void btnAnnuleSuppr_Click(object sender, EventArgs e)
+        {
+            supprMenuDisplay(false);
+            mainMenuDisplay(true);
+        }
+
+        private void btnSuppr_Click(object sender, EventArgs e)
+        {
+            string[] currPersoInfo = lstPersonnel.SelectedItem.ToString().Replace(" :", "").Split(' ');
+            DBMySQLUtils.dbSupprPerso(currPersoInfo);
+            lstPersonnel.Items.Clear();
+            DBMySQLUtils.dbGetListPersonnel(lstPersonnel);
+            supprMenuDisplay(false);
+            mainMenuDisplay(true);
+        }
+
         ///MAIN ABSENCE MENU
         private void btnAbsBack_Click(object sender, EventArgs e)
         {
             mainAbsMenuDisplay(false);
             mainMenuDisplay(true);
         }
+
+        private void btnAbsAdd_Click(object sender, EventArgs e)
+        {
+            mainAbsMenuDisplay(false);
+            titleAddModifAbs.Text = "AJOUTER UNE ABSENCE";
+            addModifAbsMenuDisplay(true);
+        }
+
+      
+        private void btnAbsModif_Click(object sender, EventArgs e)
+        {
+            if(lstAbs.SelectedIndex >= 0)
+            {
+                mainAbsMenuDisplay(false);
+                titleAddModifAbs.Text = "MODIFIER UNE ABSENCE";
+                ///On enlève les éléments inutiles à la récupération de l'absence à modifier en leur donnant la valeur 1
+                string[] absInfo = lstAbs.SelectedItem.ToString().Replace("Absent du", "").Replace("au motif :", "").Replace("au", "").Trim().Split(' ');
+                string dateDeb = "";
+                string dateFin = "";
+                string motif = "";
+                for (int i = 0; i < absInfo.Length; i++)
+                {
+                    if (i == 0) dateDeb += absInfo[i].ToString();
+                    if (i == 2) dateFin += absInfo[i].ToString();
+                    if (i >= 4) motif += absInfo[i].ToString();
+                }
+                ///On ajoute les données au menu modification d'absence
+                dateDebAddModifAbs.Text = dateDeb;
+                dateFinAddModifAbs.Text = dateFin;
+                txtAddModifAbsMotif.Text = motif;
+                addModifAbsMenuDisplay(true);
+            } else
+            {
+                lblAbsError.Text = "Il faut sélectionner une absence pour pouvoir la modifier.";
+                lblAbsError.Visible = true;
+            }
+                
+        }
+
+        private void btnAbsSuppr_Click(object sender, EventArgs e)
+        {
+            if (lstAbs.SelectedIndex >= 0)
+            {
+                mainAbsMenuDisplay(false);
+                supprAbsMenuDisplay(true);
+            }
+            else
+            {
+                lblAbsError.Text = "Il faut sélectionner une absence pour pouvoir la supprimer.";
+                lblAbsError.Visible = true;
+            }
+
+        }
+
+        ///SUPPR ABSENCE MENU
+
+
+        private void btnAbsSupprConfirm_Click(object sender, EventArgs e)
+        {
+            string[] currPersoInfo = lblAbsInfo.Text.Split(' ');
+            string[] absInfo = lstAbs.SelectedItem.ToString().Replace("Absent du", "").Replace("au motif :", "").Replace("au", "").Trim().Split(' ');
+            string dateDeb = "";
+            string dateFin = "";
+            string motif = "";
+            for (int i = 0; i < absInfo.Length; i++)
+            {
+                if (i == 0) dateDeb += absInfo[i].ToString();
+                if (i == 2) dateFin += absInfo[i].ToString();
+                if (i >= 4) motif += absInfo[i].ToString();
+            }
+            DBMySQLUtils.dbSupprAbs(currPersoInfo, dateDeb, dateFin, motif);
+            supprAbsMenuDisplay(false);
+            lstAbs.Items.Clear();
+            DBMySQLUtils.dbGetListAbs(currPersoInfo, lstAbs);
+            mainAbsMenuDisplay(true);
+        }
+
+        private void btnAnnuleSupprAbs_Click(object sender, EventArgs e)
+        {
+            supprAbsMenuDisplay(false);
+            mainAbsMenuDisplay(true);
+        }
+        ///ADD OR MODIF ABSENCE MENU
+        private void btnAddModifAbs_Click(object sender, EventArgs e)
+        {
+            string[] currPersoInfo = lblAbsInfo.Text.Split(' ');
+
+            if (titleAddModifAbs.Text.Contains("AJOUTER"))
+            {
+                DBMySQLUtils.dbAbsAdd(currPersoInfo, dateDebAddModifAbs.Text, dateFinAddModifAbs.Text, txtAddModifAbsMotif.Text);
+            }
+
+            if (titleAddModifAbs.Text.Contains("MODIFIER") && lstAbs.SelectedIndex >= 0)
+            {
+                string[] absInfo = lstAbs.SelectedItem.ToString().Replace("Absent du", "").Replace("au motif :", "").Replace("au", "").Trim().Split(' ');
+                string initDateDeb = "";
+                string initDateFin = "";
+                string initMotif = "";
+                for (int i = 0; i < absInfo.Length; i++)
+                {
+                    if (i == 0) initDateDeb += absInfo[i].ToString();
+                    if (i == 2) initDateFin += absInfo[i].ToString();
+                    if (i >= 4) initMotif += absInfo[i].ToString();
+                }
+                DBMySQLUtils.dbUpdateAbs(currPersoInfo, initDateDeb, initDateFin, initMotif, dateDebAddModifAbs.Text, dateFinAddModifAbs.Text, txtAddModifAbsMotif.Text);
+            }
+
+            lstAbs.Items.Clear();
+            DBMySQLUtils.dbGetListAbs(currPersoInfo, lstAbs);
+            addModifAbsMenuDisplay(false);
+            mainAbsMenuDisplay(true);
+
+
+
+        }
+        private void btnAnnuleAddModifAbs_Click(object sender, EventArgs e)
+        {
+            addModifAbsMenuDisplay(false);
+            mainAbsMenuDisplay(true);
+        }
+
 
         ///MODULES
 
@@ -421,5 +744,37 @@ namespace GestionPersonnelLogin
             txtMail.Text = "";
             lstAffectation.ClearSelected();
         }
+
+        private void supprMenuDisplay(bool isShow)
+        {
+            titleSupprPersonnel.Visible = isShow;
+            lblSupprInfoPerso.Visible = isShow;
+            lblSupprPersonnel.Visible = isShow;
+            btnSuppr.Visible = isShow;
+            btnAnnuleSuppr.Visible = isShow;
+        }
+
+        private void addModifAbsMenuDisplay(bool isShow)
+        {
+            titleAddModifAbs.Visible = isShow;
+            dateDebAddModifAbs.Visible = isShow;
+            dateFinAddModifAbs.Visible = isShow;
+            lblAddModifAbsDateDeb.Visible = isShow;
+            lblAddModifAbsDateFin.Visible = isShow;
+            lblAddModifAbsMotif.Visible = isShow;
+            txtAddModifAbsMotif.Visible = isShow;
+            btnAddModifAbs.Visible = isShow;
+            btnAnnuleAddModifAbs.Visible = isShow;
+        }
+
+        private void supprAbsMenuDisplay(bool isShow)
+        {
+            titleAbsSuppr.Visible = isShow;
+            lblAbsSuppr.Visible = isShow;
+            lblAbsSupprInfo.Visible = isShow;
+            btnAnnuleSupprAbs.Visible = isShow;
+            btnAbsSupprConfirm.Visible = isShow;
+        }
+
     }
 }
