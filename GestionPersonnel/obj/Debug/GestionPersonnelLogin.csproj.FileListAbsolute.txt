@@ -43,4 +43,4 @@ C:\Users\Jordan\Desktop\BTS SIO\BLOC Professionalisation\GestionPersonnelTest\ob
 C:\Users\Jordan\Desktop\BTS SIO\BLOC Professionalisation\GestionPersonnelTest\obj\Debug\GestionPersonnelLogin.csproj.CoreCompileInputs.cache
 C:\Users\Jordan\Desktop\BTS SIO\BLOC Professionalisation\GestionPersonnelTest\obj\Debug\GestionPersonnelLogin.exe
 C:\Users\Jordan\Desktop\BTS SIO\BLOC Professionalisation\GestionPersonnelTest\obj\Debug\GestionPersonnelLogin.pdb
-C:\Users\Jordan\Desktop\BTS SIO\BLOC Professionalisation\GestionPersonnelTest\obj\Debug\GestionPersonnelLogin.Model.resources
+C:\Users\Jordan\Desktop\BTS SIO\BLOC Professionalisation\GestionPersonnelTest\obj\Debug\GestionPersonnelLogin.Form1.resources

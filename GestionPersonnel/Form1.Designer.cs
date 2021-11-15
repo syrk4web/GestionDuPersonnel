@@ -89,7 +89,6 @@ namespace GestionPersonnelLogin
             this.lblAbsSupprInfo = new System.Windows.Forms.Label();
             this.btnAnnuleSupprAbs = new System.Windows.Forms.Button();
             this.btnAbsSupprConfirm = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titlelogin
@@ -239,7 +238,7 @@ namespace GestionPersonnelLogin
             this.btnAddPersonnel.Name = "btnAddPersonnel";
             this.btnAddPersonnel.Size = new System.Drawing.Size(153, 79);
             this.btnAddPersonnel.TabIndex = 4;
-            this.btnAddPersonnel.Text = "Ajout d\'un employé";
+            this.btnAddPersonnel.Text = "Ajouter employé";
             this.btnAddPersonnel.UseVisualStyleBackColor = false;
             this.btnAddPersonnel.Visible = false;
             this.btnAddPersonnel.Click += new System.EventHandler(this.btnAddPersonnel_Click);
@@ -253,7 +252,7 @@ namespace GestionPersonnelLogin
             this.btnModifPersonnel.Name = "btnModifPersonnel";
             this.btnModifPersonnel.Size = new System.Drawing.Size(153, 79);
             this.btnModifPersonnel.TabIndex = 5;
-            this.btnModifPersonnel.Text = "Modifier un employé";
+            this.btnModifPersonnel.Text = "Modifier employé";
             this.btnModifPersonnel.UseVisualStyleBackColor = false;
             this.btnModifPersonnel.Visible = false;
             this.btnModifPersonnel.Click += new System.EventHandler(this.btnModifPersonnel_Click);
@@ -267,7 +266,7 @@ namespace GestionPersonnelLogin
             this.btnAbsPersonnel.Name = "btnAbsPersonnel";
             this.btnAbsPersonnel.Size = new System.Drawing.Size(155, 79);
             this.btnAbsPersonnel.TabIndex = 6;
-            this.btnAbsPersonnel.Text = "Gérer les absences d\'un l\'employé";
+            this.btnAbsPersonnel.Text = "Absences d\'un employé";
             this.btnAbsPersonnel.UseVisualStyleBackColor = false;
             this.btnAbsPersonnel.Visible = false;
             this.btnAbsPersonnel.Click += new System.EventHandler(this.btnAbsPersonnel_Click);
@@ -281,7 +280,7 @@ namespace GestionPersonnelLogin
             this.btnSupprPersonnel.Name = "btnSupprPersonnel";
             this.btnSupprPersonnel.Size = new System.Drawing.Size(153, 79);
             this.btnSupprPersonnel.TabIndex = 7;
-            this.btnSupprPersonnel.Text = "Supprimer un employé";
+            this.btnSupprPersonnel.Text = "Supprimer employé";
             this.btnSupprPersonnel.UseVisualStyleBackColor = false;
             this.btnSupprPersonnel.Visible = false;
             this.btnSupprPersonnel.Click += new System.EventHandler(this.btnSupprPersonnel_Click);
@@ -426,7 +425,7 @@ namespace GestionPersonnelLogin
             this.btnAddModif.Name = "btnAddModif";
             this.btnAddModif.Size = new System.Drawing.Size(112, 42);
             this.btnAddModif.TabIndex = 12;
-            this.btnAddModif.Text = "Confirm";
+            this.btnAddModif.Text = "Confirmer";
             this.btnAddModif.UseVisualStyleBackColor = false;
             this.btnAddModif.Visible = false;
             this.btnAddModif.Click += new System.EventHandler(this.btnValidAddModif_Click);
@@ -516,7 +515,7 @@ namespace GestionPersonnelLogin
             this.btnAbsAdd.Name = "btnAbsAdd";
             this.btnAbsAdd.Size = new System.Drawing.Size(153, 79);
             this.btnAbsAdd.TabIndex = 5;
-            this.btnAbsAdd.Text = "Ajouter une absence";
+            this.btnAbsAdd.Text = "Ajouter absence";
             this.btnAbsAdd.UseVisualStyleBackColor = false;
             this.btnAbsAdd.Visible = false;
             this.btnAbsAdd.Click += new System.EventHandler(this.btnAbsAdd_Click);
@@ -530,7 +529,7 @@ namespace GestionPersonnelLogin
             this.btnAbsModif.Name = "btnAbsModif";
             this.btnAbsModif.Size = new System.Drawing.Size(153, 79);
             this.btnAbsModif.TabIndex = 6;
-            this.btnAbsModif.Text = "Modifier une absence";
+            this.btnAbsModif.Text = "Modifier absence";
             this.btnAbsModif.UseVisualStyleBackColor = false;
             this.btnAbsModif.Visible = false;
             this.btnAbsModif.Click += new System.EventHandler(this.btnAbsModif_Click);
@@ -544,7 +543,7 @@ namespace GestionPersonnelLogin
             this.btnAbsSuppr.Name = "btnAbsSuppr";
             this.btnAbsSuppr.Size = new System.Drawing.Size(153, 79);
             this.btnAbsSuppr.TabIndex = 7;
-            this.btnAbsSuppr.Text = "Supprimer une absence";
+            this.btnAbsSuppr.Text = "Supprimer absence";
             this.btnAbsSuppr.UseVisualStyleBackColor = false;
             this.btnAbsSuppr.Visible = false;
             this.btnAbsSuppr.Click += new System.EventHandler(this.btnAbsSuppr_Click);
@@ -558,7 +557,7 @@ namespace GestionPersonnelLogin
             this.btnAbsBack.Name = "btnAbsBack";
             this.btnAbsBack.Size = new System.Drawing.Size(153, 80);
             this.btnAbsBack.TabIndex = 8;
-            this.btnAbsBack.Text = "Retour au menu principal";
+            this.btnAbsBack.Text = "Retour";
             this.btnAbsBack.UseVisualStyleBackColor = false;
             this.btnAbsBack.Visible = false;
             this.btnAbsBack.Click += new System.EventHandler(this.btnAbsBack_Click);
@@ -781,7 +780,7 @@ namespace GestionPersonnelLogin
             this.btnAddModifAbs.Name = "btnAddModifAbs";
             this.btnAddModifAbs.Size = new System.Drawing.Size(112, 42);
             this.btnAddModifAbs.TabIndex = 28;
-            this.btnAddModifAbs.Text = "Confirm";
+            this.btnAddModifAbs.Text = "Confirmer";
             this.btnAddModifAbs.UseVisualStyleBackColor = false;
             this.btnAddModifAbs.Visible = false;
             this.btnAddModifAbs.Click += new System.EventHandler(this.btnAddModifAbs_Click);
@@ -853,23 +852,6 @@ namespace GestionPersonnelLogin
             this.btnAbsSupprConfirm.Visible = false;
             this.btnAbsSupprConfirm.Click += new System.EventHandler(this.btnAbsSupprConfirm_Click);
             // 
-            // label1
-            // 
-            this.label1.AccessibleName = "lblPersonnelError";
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Control;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(375, 381);
-            this.label1.MaximumSize = new System.Drawing.Size(360, 0);
-            this.label1.MinimumSize = new System.Drawing.Size(350, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(350, 60);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "personnel error";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -927,7 +909,6 @@ namespace GestionPersonnelLogin
             this.Controls.Add(this.titleAddorModif);
             this.Controls.Add(this.btnAbsModif);
             this.Controls.Add(this.lblAbsError);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSupprPersonnel);
             this.Controls.Add(this.btnAddPersonnel);
             this.Controls.Add(this.btnModifPersonnel);
@@ -938,7 +919,6 @@ namespace GestionPersonnelLogin
             this.Controls.Add(this.btnAddModifAbs);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1009,7 +989,6 @@ namespace GestionPersonnelLogin
         private System.Windows.Forms.Label lblAbsSupprInfo;
         private System.Windows.Forms.Button btnAnnuleSupprAbs;
         private System.Windows.Forms.Button btnAbsSupprConfirm;
-        private System.Windows.Forms.Label label1;
     }
 }
 
