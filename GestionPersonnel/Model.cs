@@ -5,20 +5,34 @@ using MySql.Data.MySqlClient;
 
 namespace GestionPersonnelLogin
 {
-    //IT IS DATABASE LOGIC WHEN LOADING OR RECEIVING A REQUEST FROM USER
+    /// <summary>
+    ///IT IS DATABASE LOGIC WHEN LOADING OR RECEIVING A REQUEST FROM USER.
+    ///EVERY TIME WE NEED TO CONNECT TO DB, CREATE A QUERY AND COMMAND TO EXECUTE LOGIC
+    /// </summary>
+    /// <returns> : database execution logic </returns>
+    ///<exception> no database connected</exception>
     class Model
     {
-        //UTILS ALLOWING CONNECTION TO DATABASE
+        /// <summary>
+        ///THIS MODULE CONNECTS APP AND DATABASE
+        /// </summary>
+        /// <returns> : the database connexion, usefull for some logic execution </returns>
         public static MySqlConnection getDBConnection()
         {
             // Connection String.
-            string connString = "Server=127.0.0.1;Database=bts;port=3306;User Id=root;password=*****";
+            string connString = "Server=127.0.0.1;Database=bts;port=3306;User Id=bts; Password=P@ssw0rd";
             MySqlConnection dbConnect = new MySqlConnection(connString);
 
             return dbConnect;
         }
 
-        //CHECK USERNAME AND PWD INFO TO GET ACCESS OR NOT TO APP, RETURN BOOL
+        /// <summary>
+        /// CHECK USERNAME AND PWD INFO TO GET ACCESS OR NOT TO APP, RETURN BOOL
+        /// </summary>
+        /// <param name="getAdmin"></param>
+        /// <param name="getPwd"></param>
+        /// <returns> true or false if match</returns>
+        ///<exception> no data </exception>
         public static bool dbCheckLogin(string getAdmin, string getPwd)
         {
             //CONNECT TO DB
@@ -57,8 +71,10 @@ namespace GestionPersonnelLogin
             return isAdmin;
         }
 
-
-        //GET ALL EMPLOYEE LIST WHEN LOG IN OR ANY CHANGE
+        /// <summary>
+        /// GET ALL EMPLOYEE LIST WHEN LOG IN OR ANY CHANGE
+        /// </summary>
+        /// <param name="getListPersonnel"></param>
         public static void dbGetListPersonnel(ListBox getListPersonnel)
         {
             MySqlConnection dbConnect = Model.getDBConnection();
@@ -89,7 +105,10 @@ namespace GestionPersonnelLogin
             dbConnect = null;
         }
 
-        //GET SERVICES OF FIRM TO PUT EMPLOYEE ON ONE OF THEM
+        /// <summary>
+        /// GET SERVICES OF FIRM TO PUT EMPLOYEE ON ONE OF THEM
+        /// </summary>
+        /// <param name="getListServices"></param>
         public static void dbGetListServices(ListBox getListServices)
         {
             MySqlConnection dbConnect = Model.getDBConnection();
@@ -118,7 +137,14 @@ namespace GestionPersonnelLogin
             dbConnect = null;
         }
 
-        //ADD EMPLOYEE
+        /// <summary>
+        /// ADD EMPLOYEE TO DATABASE
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="firstName"></param>
+        /// <param name="tel"></param>
+        /// <param name="mail"></param>
+        /// <param name="affectation"></param>
         public static void dbAddListPersonnel(string name, string firstName, string tel, string mail, string affectation)
         {
             MySqlConnection dbConnect = Model.getDBConnection();
@@ -150,7 +176,15 @@ namespace GestionPersonnelLogin
             }
         }
 
-        //UPDATE EMPLOYEE INFORMATION WHEN ON ADD OR MODIF EMPLOYEE MENU
+        /// <summary>
+        ///UPDATE EMPLOYEE INFORMATION WHEN ADD OR MODIF EMPLOYEE MENU
+        /// </summary>
+        /// <param name="currPersoInfo"></param>
+        /// <param name="name"></param>
+        /// <param name="firstName"></param>
+        /// <param name="tel"></param>
+        /// <param name="mail"></param>
+        /// <param name="affectation"></param>
         public static void dbUpdatePerso(string[] currPersoInfo, string name, string firstName, string tel, string mail, string affectation)
         {
             Console.WriteLine(currPersoInfo[0], currPersoInfo[1], currPersoInfo[2], currPersoInfo[3]);
@@ -185,8 +219,16 @@ namespace GestionPersonnelLogin
             }
         }
 
-        //GET CURRENT INFOS OF EMPLOYEE AND RETRIEVE THEM ON APP WHEN OPENING EMPLOYEE MODIF MENU
-        public static void dbModifMenuShowInfo(string[] currPersoInfo, TextBox name, TextBox firstname, TextBox tel, TextBox mail, ListBox listAffectation)
+        /// <summary>
+        ///GET CURRENT INFOS OF EMPLOYEE AND RETRIEVE THEM ON APP WHEN OPENING EMPLOYEE MODIF MENU
+        /// </summary>
+        /// <param name="currPersoInfo"></param>
+        /// <param name="name"></param>
+        /// <param name="firstName"></param>
+        /// <param name="tel"></param>
+        /// <param name="mail"></param>
+        /// <param name="listAffectation"></param>
+        public static void dbModifMenuShowInfo(string[] currPersoInfo, TextBox name, TextBox firstName, TextBox tel, TextBox mail, ListBox listAffectation)
         {
             MySqlConnection dbConnect = Model.getDBConnection();
             dbConnect.Open();
@@ -203,7 +245,7 @@ namespace GestionPersonnelLogin
                         if (reader[0].ToString() == currPersoInfo[0].ToString())
                         {
                             name.Text = reader[0].ToString();
-                            firstname.Text = reader[1].ToString();
+                            firstName.Text = reader[1].ToString();
                             tel.Text = reader[2].ToString();
                             mail.Text = reader[3].ToString();
                             int index = listAffectation.FindString(reader[4].ToString());
@@ -221,7 +263,10 @@ namespace GestionPersonnelLogin
             dbConnect = null;
         }
 
-        //SUPPRESS SELECTED EMPLOYEE
+        /// <summary>
+        ///SUPPRESS SELECTED EMPLOYEE
+        /// </summary>
+        /// <param name="currPersoInfo"></param>
         public static void dbSupprPerso(string[] currPersoInfo)
         {
             MySqlConnection dbConnect = Model.getDBConnection();
@@ -251,7 +296,11 @@ namespace GestionPersonnelLogin
             }
         }
 
-        //RETRIEVE ABSENCE LIST OF SELECTED EMPLOYEE
+        /// <summary>
+        ///RETRIEVE ABSENCE LIST OF SELECTED EMPLOYEE
+        /// </summary>
+        /// <param name="currPerso"></param>
+        /// <param name="listAbs"></param>
         public static void dbGetListAbs(string[] currPerso, ListBox listAbs)
         {
             MySqlConnection dbConnect = Model.getDBConnection();
@@ -285,7 +334,13 @@ namespace GestionPersonnelLogin
             dbConnect = null;
         }
 
-        //ADD ABSENCE TO SELECTED EMPLOYEE
+        /// <summary>
+        ///ADD ABSENCE TO SELECTED EMPLOYEE
+        /// </summary>
+        /// <param name="currPersoInfo"></param>
+        /// <param name="dateDeb"></param>
+        /// <param name="dateFin"></param>
+        /// <param name="motif"></param>
         public static void dbAbsAdd(string[] currPersoInfo, string dateDeb, string dateFin, string motif)
         {
             MySqlConnection dbConnect = Model.getDBConnection();
@@ -317,7 +372,16 @@ namespace GestionPersonnelLogin
             }
         }
 
-        //UPDATE ABSENCE INFO OF SELECTED EMPLOYEE
+        /// <summary>
+        ///UPDATE ABSENCE INFO OF SELECTED EMPLOYEE
+        /// </summary>
+        /// <param name="currPersoInfo"></param>
+        /// <param name="initDateDeb"></param>
+        /// <param name="initDateFin"></param>
+        /// <param name="initMotif"></param>
+        /// <param name="newDateDeb"></param>
+        /// <param name="newDateFin"></param>
+        /// <param name="newMotif"></param>
         public static void dbUpdateAbs(string[] currPersoInfo, string initDateDeb, string initDateFin, string initMotif, string newDateDeb, string newDateFin, string newMotif)
         {
             MySqlConnection dbConnect = Model.getDBConnection();
@@ -353,7 +417,13 @@ namespace GestionPersonnelLogin
             }
         }
 
-        //SUPPR SELECTED ABSENCE OF SELECTED EMPLOYEE
+        /// <summary>
+        ///SUPPR SELECTED ABSENCE OF SELECTED EMPLOYEE
+        /// </summary>
+        /// <param name="currPersoInfo"></param>
+        /// <param name="currDateDeb"></param>
+        /// <param name="currDateFin"></param>
+        /// <param name="currMotif"></param>
         public static void dbSupprAbs(string[] currPersoInfo, string currDateDeb, string currDateFin, string currMotif)
         {
             MySqlConnection dbConnect = Model.getDBConnection();

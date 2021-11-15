@@ -1,12 +1,15 @@
 ﻿using System.Windows.Forms;
 
-
 namespace GestionPersonnelLogin
 {
+    /// <summary>
+    /// NECESSSARY COMPONENTS FOR APP
+    /// </summary>
     public partial class Form1 : Form
     {
-
-        //LOGIN MENU VIEW COMPONENTS
+        /// <summary>
+        ///LOGIN MENU VIEW COMPONENTS
+        /// </summary>
         public void loginMenuDisplay(bool isShow)
         {
             titlelogin.Visible = isShow;
@@ -17,8 +20,9 @@ namespace GestionPersonnelLogin
             lblPassword.Visible = isShow;
             txtPassword.Visible = isShow;
         }
-
-        //MAIN MENU VIEW COMPONENTS
+        /// <summary>
+        ///MAIN MENU VIEW COMPONENTS
+        /// </summary>
         public void mainMenuDisplay(bool isShow)
         {
             lblListePersonnel.Visible = isShow;
@@ -31,8 +35,9 @@ namespace GestionPersonnelLogin
             btnSupprPersonnel.Visible = isShow;
             lblPersonnelError.Visible = false;
         }
-
-        //MAIN ABSENCE MENU VIEW COMPONENTS
+        /// <summary>
+        ///MAIN ABSENCE MENU VIEW COMPONENTS
+        /// </summary>
         public void mainAbsMenuDisplay(bool isShow)
         {
             titleAbs.Visible = isShow;
@@ -47,8 +52,9 @@ namespace GestionPersonnelLogin
             lblAbsInfo.Visible = isShow;
             lblAbsError.Visible = false;
         }
-
-        //ADD OR MODIF EMPLOYEE MENU VIEW COMPONENTS
+        /// <summary>
+        ///ADD OR MODIF EMPLOYEE MENU VIEW COMPONENTS
+        /// </summary>
         public void addOrModifMenuDisplay(bool isShow)
         {
             titleAddorModif.Visible = isShow;
@@ -67,8 +73,9 @@ namespace GestionPersonnelLogin
             lblAddOrModifError.Visible = false;
 
         }
-
-        //CLEAR TXTBOX AND SELECTED ITEM OF ADD OR MODIF EMPLOYEE VIEW COMPONENTS
+        /// <summary>
+        ///CLEAR TXTBOX AND SELECTED ITEM OF ADD OR MODIF EMPLOYEE VIEW COMPONENTS
+        /// </summary>
         public void clearAddModifTxtBox()
         {
             txtName.Text = "";
@@ -77,9 +84,9 @@ namespace GestionPersonnelLogin
             txtMail.Text = "";
             lstAffectation.ClearSelected();
         }
-
-
-        //SUPRESS EMPLOYEE MENU VIEW COMPONENTS
+        /// <summary>
+        ///SUPRESS EMPLOYEE MENU VIEW COMPONENTS
+        /// </summary>
         public void supprMenuDisplay(bool isShow)
         {
             titleSupprPersonnel.Visible = isShow;
@@ -88,8 +95,9 @@ namespace GestionPersonnelLogin
             btnSuppr.Visible = isShow;
             btnAnnuleSuppr.Visible = isShow;
         }
-
-        //ADD OR MODIF ABSENCE OF EMPLOYEE MENU VIEW COMPONENTS
+        /// <summary>
+        ///ADD OR MODIF ABSENCE OF EMPLOYEE MENU VIEW COMPONENTS
+        /// </summary>
         public void addModifAbsMenuDisplay(bool isShow)
         {
             titleAddModifAbs.Visible = isShow;
@@ -102,8 +110,9 @@ namespace GestionPersonnelLogin
             btnAddModifAbs.Visible = isShow;
             btnAnnuleAddModifAbs.Visible = isShow;
         }
-
-        //SUPPR ABSENCE OF EMPLOYEE MENU VIEW COMPONENTS
+        /// <summary>
+        ///SUPPR ABSENCE OF EMPLOYEE MENU VIEW COMPONENTS
+        /// </summary>
         public void supprAbsMenuDisplay(bool isShow)
         {
             titleAbsSuppr.Visible = isShow;

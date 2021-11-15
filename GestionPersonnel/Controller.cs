@@ -2,13 +2,20 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-
 namespace GestionPersonnelLogin
 {
+    /// <summary>
+    /// CONTROLLER IS WHERE WE CONTROL REQUEST AND RESPONSE
+    /// IT ARTICULATE VIEW AND MODEL LOGIC AND EXECUTION
+    /// </summary>
     public partial class Form1 : Form
     {
-        
-        //ON LOGIN MENU
+        /// <summary>
+        /// CONTROL WHEN WE WANT TO LOGIN IF ACCESS DENIED OR GRANTED
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns> : access app if data match, else error if doesn't match or some needed fields empty  </returns>
         private void btnLogin_Click(object sender, EventArgs e)
         {
             //If username or pwd is empty
@@ -18,7 +25,7 @@ namespace GestionPersonnelLogin
             {
                 //check from database and return bool if admin
                 bool isAdmin = Model.dbCheckLogin(txtUsername.Text, txtPassword.Text);
-                if (!isAdmin)loginError("L'username ou le password sont incorrects.", true);
+                if (!isAdmin) loginError("L'username ou le password sont incorrects.", true);
                 if (isAdmin)
                 {
                     //load list and display menu
@@ -32,8 +39,13 @@ namespace GestionPersonnelLogin
 
         }
 
-        //LOGIN MODULES
-        //display wanted error msg if something wrong when trying to log in
+        /// <summary>
+        /// MODULE THAT WE USE TO TELL THE USER ERRORS HE MADE ON LOG MENU
+        /// </summary>
+        /// <param name="errMsg"></param>
+        /// <param name="isVisible"></param>
+        /// <returns> message with error</returns>
+        /// <exception>no error detectect</exception> 
         private void loginError(string errMsg, bool isVisible)
         {
             lblLogError.ForeColor = Color.Red;
@@ -41,9 +53,12 @@ namespace GestionPersonnelLogin
             lblLogError.Visible = isVisible;
         }
 
-        //ON MAIN MENU
 
-        //go to add employee menu
+        /// <summary>
+        /// BTN THAT ADD AN EMPLOYEE ON EMPLOYEE LIST
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAddPersonnel_Click(object sender, EventArgs e)
         {
             titleAddorModif.Text = "AJOUTER UN EMPLOYE";
@@ -53,7 +68,11 @@ namespace GestionPersonnelLogin
 
         }
 
-        //go to modif selected employee menu
+        /// <summary>
+        /// BTN THAT MODIF SELECTED EMPLOYEE DATA
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnModifPersonnel_Click(object sender, EventArgs e)
         {
             //can modif employee only if one exist or is selected
@@ -74,7 +93,11 @@ namespace GestionPersonnelLogin
             }
         }
 
-        //go to absence menu of selected employee
+        /// <summary>
+        /// BTN THAT DISPLAY ABSENCE MENU OF SELECTED EMPLOYEE
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAbsPersonnel_Click(object sender, EventArgs e)
         {
             //can modif employee only if one exist or is selected
@@ -98,7 +121,11 @@ namespace GestionPersonnelLogin
 
         }
 
-        //go to suppress employee menu
+        /// <summary>
+        /// BTN THAT SUPPRESS SELECTED EMPLOYEE
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnSupprPersonnel_Click(object sender, EventArgs e)
         {
             //check if employee is selected to go
@@ -116,18 +143,22 @@ namespace GestionPersonnelLogin
             }
         }
 
-
-        //MENU ADD OR MODIF EMPPLOYEE
-        //some components are shared for add and modif employee features
-
-        //go back to main menu without action
+        /// <summary>
+        /// BTN THAT RETURN FROM ADD/MODIF EMPLOYEE MENU TO MAIN MENU WITHOUT ANY CHANGE
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnBackAddModif_Click(object sender, EventArgs e)
         {
             addOrModifMenuDisplay(false);
             mainMenuDisplay(true);
         }
 
-        //valid add or modif action and return to main menu
+        /// <summary>
+        /// BTN THAT ADD OR MODIFY EMPLOYEE DEPENDING DISPLAY MENU
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnValidAddModif_Click(object sender, EventArgs e)
         {
             //all txtbox and list item display have to be fill
@@ -154,16 +185,22 @@ namespace GestionPersonnelLogin
             mainMenuDisplay(true);
         }
 
-        //MENU SUPPR
-
-        //go back to main menu without action
+        /// <summary>
+        /// BTN THAT RETURN FROM SUPPRESS MENU TO MAIN MENU WITHOUT ANY CHANGE
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAnnuleSuppr_Click(object sender, EventArgs e)
         {
             supprMenuDisplay(false);
             mainMenuDisplay(true);
         }
 
-        //suppress selected employee
+        /// <summary>
+        /// BTN THAT SUPPRESS SELECTED EMPLOYEE
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnSuppr_Click(object sender, EventArgs e)
         {
             //get current employee and supress it on database
@@ -175,32 +212,42 @@ namespace GestionPersonnelLogin
             mainMenuDisplay(true);
         }
 
-        //MAIN MENU AND EMPLOYEE MODULES
-
-        //module that display error message on main personnel menu if needed
+        /// <summary>
+        /// MODULE THAT DISPLAY WANTED ERROR MSG ON MAIN MENU IF NEEDED
+        /// </summary>
+        /// <param name="errMsg"></param>
+        /// <param name="isVisible"></param> 
         private void personnelError(string errMsg, bool isVisible)
         {
             lblPersonnelError.Text = errMsg;
             lblPersonnelError.Visible = isVisible;
         }
 
-        //module that reload list of employee after any change
+        /// <summary>
+        /// MODULE THAT RELOAD EMPLOYEE LIST AFTER ANY CHANGE
+        /// </summary> 
         private void reloadListPerso()
         {
             lstPersonnel.Items.Clear();
             Model.dbGetListPersonnel(lstPersonnel);
         }
 
-        //MAIN ABSENCE MENU
-
-        //go back to main menu without action
+        /// <summary>
+        ///  RETURN FROM ABSENCE MENU TO MAIN MENU WITHOUT ANY CHANGE
+        /// </summary> 
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAbsBack_Click(object sender, EventArgs e)
         {
             mainAbsMenuDisplay(false);
             mainMenuDisplay(true);
         }
 
-        //go to add absence menu
+        /// <summary>
+        ///  BTN THAT GO FROM MAIN ABSENCE MENU TO ADD ABSENCE MENU
+        /// </summary> 
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAbsAdd_Click(object sender, EventArgs e)
         {
             titleAddModifAbs.Text = "AJOUTER UNE ABSENCE";
@@ -208,7 +255,11 @@ namespace GestionPersonnelLogin
             addModifAbsMenuDisplay(true);
         }
 
-        //go to modif absence menu
+        /// <summary>
+        ///   BTN THAT GO FROM MAIN ABSENCE MENU TO MODIFY ABSENCE MENU
+        /// </summary> 
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAbsModif_Click(object sender, EventArgs e)
         {
             //check if an absence item is selected
@@ -233,12 +284,17 @@ namespace GestionPersonnelLogin
             }
         }
 
-        //go to suppr absence menu
+        /// <summary>
+        ///   BTN THAT GO FROM MAIN ABSENCE MENU TO SUPPRESS ABSENCE MENU
+        /// </summary> 
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAbsSuppr_Click(object sender, EventArgs e)
         {
             if (lstAbs.SelectedIndex >= 0)
             {
                 mainAbsMenuDisplay(false);
+                lblAbsSupprInfo.Text = lstAbs.SelectedItem.ToString();
                 supprAbsMenuDisplay(true);
             }
             else
@@ -248,9 +304,11 @@ namespace GestionPersonnelLogin
 
         }
 
-        //SUPPR ABSENCE MENU
-
-        //suppress selected absence
+        /// <summary>
+        ///   BTN THAT SUPPRESS SELECTED ABSENCE AND GO TO MAIN ABSENCE MENU
+        /// </summary> 
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAbsSupprConfirm_Click(object sender, EventArgs e)
         {
             //get init absence info and selected employee
@@ -268,17 +326,22 @@ namespace GestionPersonnelLogin
             mainAbsMenuDisplay(true);
         }
 
-        //go back to main absence menu without action
+        /// <summary>
+        ///   BTN THAT GO FROM SUPRESS ABSENCE MENU TO MAIN ABSENCE MENU WITHOUT ANY CHANGE
+        /// </summary> 
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAnnuleSupprAbs_Click(object sender, EventArgs e)
         {
             supprAbsMenuDisplay(false);
             mainAbsMenuDisplay(true);
         }
 
-        //ADD OR MODIF ABSENCE MENU
-        //add and modif absence share some components
-      
-        //add or modif absence action
+        /// <summary>
+        ///   BTN THAT ADD OR MODIFY ABSENCE DEPENDING DISPLAY MENU AND GO BACK TO MAIN ABSENCE MENU
+        /// </summary> 
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAddModifAbs_Click(object sender, EventArgs e)
         {
             //get curr employee info
@@ -304,16 +367,20 @@ namespace GestionPersonnelLogin
         }
 
 
-
+        /// <summary>
+        ///   BTN THAT GO FROM ADD/MODIF MENU TO MAIN ABSENCE MENU WITHOUT ANY CHANGE
+        /// </summary> 
+        /// <param name="sender"></param>
+        /// <param name="e"></param> 
         private void btnAnnuleAddModifAbs_Click(object sender, EventArgs e)
         {
             addModifAbsMenuDisplay(false);
             mainAbsMenuDisplay(true);
         }
 
-        //MODULES ABSENCE MENU
-
-        //modules that allow to get dates and textInfo about absence as array to work with
+        /// <summary>
+        ///   MODULE THAT RETRIEVE ACTUAL ABSENCE DATA AS ARRAY TO WORK WITH
+        /// </summary> 
         string[] getInitDateMotif()
         {
             string[] absInfo = lstAbs.SelectedItem.ToString().Replace("Absent du", "").Replace("au motif :", "").Replace("au", "").Trim().Split(' ');
@@ -330,7 +397,11 @@ namespace GestionPersonnelLogin
             return getValues;
         }
 
-        //module that display wanted error msg about absence menu
+        /// <summary>
+        ///   MODULE THAT DISPLAY WANTED ERROR MSG ON MAIN ABSENCE MENU
+        /// </summary> 
+        /// <param name="errMsg"></param>
+        /// <param name="isVisible"></param> 
         private void errAbs(string errMsg, bool isVisible)
         {
             lblAbsError.Text = errMsg;
