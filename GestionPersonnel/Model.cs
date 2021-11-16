@@ -113,7 +113,7 @@ namespace GestionPersonnelLogin
         {
             MySqlConnection dbConnect = Model.getDBConnection();
             dbConnect.Open();
-            string dbQuery = "SELECT * FROM bts.services";
+            string dbQuery = "SELECT * FROM bts.service";
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = dbConnect;
             cmd.CommandText = dbQuery;
@@ -125,6 +125,38 @@ namespace GestionPersonnelLogin
                     {
                         string serviceName = reader[1].ToString();
                         getListServices.Items.Add(serviceName);
+                    }
+                }
+                else
+                {
+                    reader.Close();
+                }
+            }
+            dbConnect.Close();
+            dbConnect.Dispose();
+            dbConnect = null;
+        }
+
+        /// <summary>
+        /// GET REASON LIST ITEMS
+        /// </summary>
+        /// <param name="getListMotif"></param>
+        public static void dbGetListMotif(ListBox getListMotif)
+        {
+            MySqlConnection dbConnect = Model.getDBConnection();
+            dbConnect.Open();
+            string dbQuery = "SELECT * FROM bts.service";
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = dbConnect;
+            cmd.CommandText = dbQuery;
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string motifName = reader[1].ToString();
+                        getListMotif.Items.Add(motifName);
                     }
                 }
                 else

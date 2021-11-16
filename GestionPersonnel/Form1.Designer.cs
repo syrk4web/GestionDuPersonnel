@@ -80,7 +80,6 @@ namespace GestionPersonnelLogin
             this.dateDebAddModifAbs = new System.Windows.Forms.DateTimePicker();
             this.lblAddModifAbsDateFin = new System.Windows.Forms.Label();
             this.dateFinAddModifAbs = new System.Windows.Forms.DateTimePicker();
-            this.txtAddModifAbsMotif = new System.Windows.Forms.TextBox();
             this.lblAddModifAbsMotif = new System.Windows.Forms.Label();
             this.btnAnnuleAddModifAbs = new System.Windows.Forms.Button();
             this.btnAddModifAbs = new System.Windows.Forms.Button();
@@ -89,13 +88,13 @@ namespace GestionPersonnelLogin
             this.lblAbsSupprInfo = new System.Windows.Forms.Label();
             this.btnAnnuleSupprAbs = new System.Windows.Forms.Button();
             this.btnAbsSupprConfirm = new System.Windows.Forms.Button();
+            this.lstMotif = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // titlelogin
             // 
             this.titlelogin.AccessibleName = "titleLogin";
             this.titlelogin.AutoSize = true;
-            this.titlelogin.Enabled = false;
             this.titlelogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
             this.titlelogin.Location = new System.Drawing.Point(176, 44);
             this.titlelogin.Name = "titlelogin";
@@ -108,7 +107,6 @@ namespace GestionPersonnelLogin
             this.lblUsername.AccessibleName = "lblUsername";
             this.lblUsername.AutoSize = true;
             this.lblUsername.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.lblUsername.Enabled = false;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblUsername.Location = new System.Drawing.Point(241, 126);
             this.lblUsername.Name = "lblUsername";
@@ -144,7 +142,6 @@ namespace GestionPersonnelLogin
             this.lblPassword.AccessibleName = "lblPassword";
             this.lblPassword.AutoSize = true;
             this.lblPassword.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.lblPassword.Enabled = false;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblPassword.Location = new System.Drawing.Point(241, 174);
             this.lblPassword.Name = "lblPassword";
@@ -168,7 +165,6 @@ namespace GestionPersonnelLogin
             // 
             this.lblLogError.AccessibleName = "lblLogError";
             this.lblLogError.AutoSize = true;
-            this.lblLogError.Enabled = false;
             this.lblLogError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblLogError.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblLogError.Location = new System.Drawing.Point(210, 284);
@@ -734,17 +730,6 @@ namespace GestionPersonnelLogin
             this.dateFinAddModifAbs.TabIndex = 24;
             this.dateFinAddModifAbs.Visible = false;
             // 
-            // txtAddModifAbsMotif
-            // 
-            this.txtAddModifAbsMotif.AccessibleName = "txtAddModifAbsMotif";
-            this.txtAddModifAbsMotif.Location = new System.Drawing.Point(255, 255);
-            this.txtAddModifAbsMotif.MaximumSize = new System.Drawing.Size(295, 4);
-            this.txtAddModifAbsMotif.MinimumSize = new System.Drawing.Size(290, 50);
-            this.txtAddModifAbsMotif.Name = "txtAddModifAbsMotif";
-            this.txtAddModifAbsMotif.Size = new System.Drawing.Size(295, 20);
-            this.txtAddModifAbsMotif.TabIndex = 25;
-            this.txtAddModifAbsMotif.Visible = false;
-            // 
             // lblAddModifAbsMotif
             // 
             this.lblAddModifAbsMotif.AccessibleName = "lblAddModifAbsMotif";
@@ -852,6 +837,18 @@ namespace GestionPersonnelLogin
             this.btnAbsSupprConfirm.Visible = false;
             this.btnAbsSupprConfirm.Click += new System.EventHandler(this.btnAbsSupprConfirm_Click);
             // 
+            // lstMotif
+            // 
+            this.lstMotif.AccessibleName = "lstMotif";
+            this.lstMotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lstMotif.FormattingEnabled = true;
+            this.lstMotif.ItemHeight = 16;
+            this.lstMotif.Location = new System.Drawing.Point(350, 235);
+            this.lstMotif.Name = "lstMotif";
+            this.lstMotif.Size = new System.Drawing.Size(202, 100);
+            this.lstMotif.TabIndex = 34;
+            this.lstMotif.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -864,7 +861,6 @@ namespace GestionPersonnelLogin
             this.Controls.Add(this.lblAbsSuppr);
             this.Controls.Add(this.btnAnnuleAddModifAbs);
             this.Controls.Add(this.lblAddModifAbsMotif);
-            this.Controls.Add(this.txtAddModifAbsMotif);
             this.Controls.Add(this.dateFinAddModifAbs);
             this.Controls.Add(this.lblAddModifAbsDateFin);
             this.Controls.Add(this.dateDebAddModifAbs);
@@ -917,8 +913,9 @@ namespace GestionPersonnelLogin
             this.Controls.Add(this.btnSuppr);
             this.Controls.Add(this.lblLogError);
             this.Controls.Add(this.btnAddModifAbs);
+            this.Controls.Add(this.lstMotif);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Gestion Du Personnel";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -980,7 +977,6 @@ namespace GestionPersonnelLogin
         private System.Windows.Forms.DateTimePicker dateDebAddModifAbs;
         private System.Windows.Forms.Label lblAddModifAbsDateFin;
         private System.Windows.Forms.DateTimePicker dateFinAddModifAbs;
-        private System.Windows.Forms.TextBox txtAddModifAbsMotif;
         private System.Windows.Forms.Label lblAddModifAbsMotif;
         private System.Windows.Forms.Button btnAnnuleAddModifAbs;
         private System.Windows.Forms.Button btnAddModifAbs;
@@ -989,6 +985,7 @@ namespace GestionPersonnelLogin
         private System.Windows.Forms.Label lblAbsSupprInfo;
         private System.Windows.Forms.Button btnAnnuleSupprAbs;
         private System.Windows.Forms.Button btnAbsSupprConfirm;
+        private System.Windows.Forms.ListBox lstMotif;
     }
 }
 

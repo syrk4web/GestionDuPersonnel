@@ -106,7 +106,7 @@ namespace GestionPersonnelLogin
             lblAddModifAbsDateDeb.Visible = isShow;
             lblAddModifAbsDateFin.Visible = isShow;
             lblAddModifAbsMotif.Visible = isShow;
-            txtAddModifAbsMotif.Visible = isShow;
+            lstMotif.Visible = isShow;
             btnAddModifAbs.Visible = isShow;
             btnAnnuleAddModifAbs.Visible = isShow;
         }

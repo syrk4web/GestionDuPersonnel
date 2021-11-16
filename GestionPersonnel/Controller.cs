@@ -31,6 +31,8 @@ namespace GestionPersonnelLogin
                     //load list and display menu
                     Model.dbGetListPersonnel(lstPersonnel);
                     Model.dbGetListServices(lstAffectation);
+                    Model.dbGetListMotif(lstMotif);
+
                     loginMenuDisplay(false);
                     mainMenuDisplay(true);
                 }
@@ -38,6 +40,7 @@ namespace GestionPersonnelLogin
             }
 
         }
+
 
         /// <summary>
         /// MODULE THAT WE USE TO TELL THE USER ERRORS HE MADE ON LOG MENU
@@ -274,7 +277,7 @@ namespace GestionPersonnelLogin
                 //display current data on fields
                 dateDebAddModifAbs.Text = initDateDeb;
                 dateFinAddModifAbs.Text = initDateFin;
-                txtAddModifAbsMotif.Text = initMotif;
+                lstMotif.Text = initMotif;
                 mainAbsMenuDisplay(false);
                 addModifAbsMenuDisplay(true);
             }
@@ -347,7 +350,7 @@ namespace GestionPersonnelLogin
             //get curr employee info
             string[] currPersoInfo = lblAbsInfo.Text.Split(' ');
             //add case
-            if (titleAddModifAbs.Text.Contains("AJOUTER")) Model.dbAbsAdd(currPersoInfo, dateDebAddModifAbs.Text, dateFinAddModifAbs.Text, txtAddModifAbsMotif.Text);
+            if (titleAddModifAbs.Text.Contains("AJOUTER")) Model.dbAbsAdd(currPersoInfo, dateDebAddModifAbs.Text, dateFinAddModifAbs.Text, lstMotif.SelectedItem.ToString());
             //modif case
             if (titleAddModifAbs.Text.Contains("MODIFIER") && lstAbs.SelectedIndex >= 0)
             {
@@ -357,7 +360,7 @@ namespace GestionPersonnelLogin
                 string initDateFin = getInit[1];
                 string initMotif = getInit[2];
                 //put initData and newData with logic to change on database
-                Model.dbUpdateAbs(currPersoInfo, initDateDeb, initDateFin, initMotif, dateDebAddModifAbs.Text, dateFinAddModifAbs.Text, txtAddModifAbsMotif.Text);
+                Model.dbUpdateAbs(currPersoInfo, initDateDeb, initDateFin, initMotif, dateDebAddModifAbs.Text, dateFinAddModifAbs.Text, lstMotif.SelectedItem.ToString());
             }
             //in all cases, we want to reload and go back
             lstAbs.Items.Clear();
