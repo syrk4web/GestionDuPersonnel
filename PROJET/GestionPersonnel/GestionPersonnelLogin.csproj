@@ -61,7 +61,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>CE7671DF27D5A7231D425697231C4E76FF8BA460</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>68D4A7C6BCE6255CBBE7562EFD0A6E447B7CDC9B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>GestionPersonnelLogin_TemporaryKey.pfx</ManifestKeyFile>

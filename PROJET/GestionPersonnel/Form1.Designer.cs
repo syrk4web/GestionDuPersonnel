@@ -298,7 +298,7 @@ namespace GestionPersonnelLogin
             this.lblName.AccessibleName = "lblName";
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblName.Location = new System.Drawing.Point(218, 83);
+            this.lblName.Location = new System.Drawing.Point(222, 138);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(37, 17);
             this.lblName.TabIndex = 1;
@@ -319,7 +319,7 @@ namespace GestionPersonnelLogin
             this.lblFirstName.AccessibleName = "lblFirstName";
             this.lblFirstName.AutoSize = true;
             this.lblFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblFirstName.Location = new System.Drawing.Point(218, 138);
+            this.lblFirstName.Location = new System.Drawing.Point(222, 81);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(57, 17);
             this.lblFirstName.TabIndex = 3;
@@ -854,6 +854,8 @@ namespace GestionPersonnelLogin
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblFirstName);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.lstMotif);
             this.Controls.Add(this.lblAddModifAbsMotif);
             this.Controls.Add(this.dateFinAddModifAbs);
@@ -881,9 +883,7 @@ namespace GestionPersonnelLogin
             this.Controls.Add(this.txtTel);
             this.Controls.Add(this.lblTel);
             this.Controls.Add(this.txtFirstName);
-            this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.txtName);
-            this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblAbsInfo);
             this.Controls.Add(this.lblListeAbs);
             this.Controls.Add(this.lblAbsEmployeID);

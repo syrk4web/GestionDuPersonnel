@@ -83,8 +83,7 @@ namespace GestionPersonnelLogin
             {
                 titleAddorModif.Text = "MODIFIER UN EMPLOYE";
                 //get current employee info to be display on next menu
-                string currPersoStr = lstPersonnel.SelectedItem.ToString().Replace(" :", "");
-                string[] currPersoInfo = currPersoStr.Split(' ');
+                string[] currPersoInfo = lstPersonnel.SelectedItem.ToString().Replace(" :", "").Split(' ');
                 Model.dbModifMenuShowInfo(currPersoInfo, txtName, txtFirstName, txtTel, txtMail, lstAffectation);
                 mainMenuDisplay(false);
                 addOrModifMenuDisplay(true);
@@ -177,7 +176,7 @@ namespace GestionPersonnelLogin
             if (titleAddorModif.Text.Contains("MODIFIER"))
             {
                 //get current employee info
-                string[] currPersoInfo = lstPersonnel.SelectedItem.ToString().Split(' ');
+                string[] currPersoInfo = lstPersonnel.SelectedItem.ToString().Replace(" :", "").Split(' ');
                 //use this with new info to update employee
                 Model.dbUpdatePerso(currPersoInfo, txtName.Text, txtFirstName.Text, txtTel.Text, txtMail.Text, lstAffectation.SelectedItem.ToString());
             }
@@ -315,7 +314,7 @@ namespace GestionPersonnelLogin
         private void btnAbsSupprConfirm_Click(object sender, EventArgs e)
         {
             //get init absence info and selected employee
-            string[] currPersoInfo = lblAbsInfo.Text.Split(' ');
+            string[] currPersoInfo = lstPersonnel.SelectedItem.ToString().Replace(" :", "").Split(' ');
             string[] getInit = getInitDateMotif();
             string initDateDeb = getInit[0];
             string initDateFin = getInit[1];
@@ -347,8 +346,17 @@ namespace GestionPersonnelLogin
         /// <param name="e"></param> 
         private void btnAddModifAbs_Click(object sender, EventArgs e)
         {
+            //check if all fields are fill
+            if (dateDebAddModifAbs.Text == "" || dateFinAddModifAbs.Text == "" || lstMotif.SelectedIndex < 0)
+            {
+                lblAddOrModifError.Text = "Un champ est manquant pour pouvoir effectuer cette action.";
+                lblAddOrModifError.Visible = true;
+                //stop execution
+                return;
+            }
+
             //get curr employee info
-            string[] currPersoInfo = lblAbsInfo.Text.Split(' ');
+            string[] currPersoInfo = lstPersonnel.SelectedItem.ToString().Replace(" :", "").Split(' ');
             //add case
             if (titleAddModifAbs.Text.Contains("AJOUTER")) Model.dbAbsAdd(currPersoInfo, dateDebAddModifAbs.Text, dateFinAddModifAbs.Text, lstMotif.SelectedItem.ToString());
             //modif case
@@ -368,7 +376,6 @@ namespace GestionPersonnelLogin
             addModifAbsMenuDisplay(false);
             mainAbsMenuDisplay(true);
         }
-
 
         /// <summary>
         ///   BTN THAT GO FROM ADD/MODIF MENU TO MAIN ABSENCE MENU WITHOUT ANY CHANGE
@@ -396,6 +403,10 @@ namespace GestionPersonnelLogin
                 if (i == 2) initDateFin += absInfo[i].ToString();
                 if (i >= 4) initMotif += absInfo[i].ToString();
             }
+            //change reason with multiple words
+            if (initMotif.Contains("motiffamilial")) initMotif = "motif familial";
+            if (initMotif.Contains("congéparental")) initMotif = "congé parental";
+
             string[] getValues = new string[3] { initDateDeb, initDateFin, initMotif };
             return getValues;
         }

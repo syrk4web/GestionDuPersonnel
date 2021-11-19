@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GestionDuPersonnel.exe" size="39912">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GestionDuPersonnel.exe" size="40424">
       <assemblyIdentity name="GestionDuPersonnel" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fqQzFVm39+LkpFiXt6YejaaL0AsgVJ+Pbirm8ZoJf58=</dsig:DigestValue>
+        <dsig:DigestValue>UvF/gzOj1tWdApRVKTLd4mz5QWV0eOBvvJNgZwoov2g=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

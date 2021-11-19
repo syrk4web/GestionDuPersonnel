@@ -219,7 +219,6 @@ namespace GestionPersonnelLogin
         /// <param name="affectation"></param>
         public static void dbUpdatePerso(string[] currPersoInfo, string name, string firstName, string tel, string mail, string affectation)
         {
-            Console.WriteLine(currPersoInfo[0], currPersoInfo[1], currPersoInfo[2], currPersoInfo[3]);
             MySqlConnection dbConnect = Model.getDBConnection();
             dbConnect.Open();
             try
@@ -347,7 +346,7 @@ namespace GestionPersonnelLogin
                 {
                     while (reader.Read())
                     {
-                        if (reader[0].ToString() == currPerso[2].ToString() && reader[1].ToString() == currPerso[1])
+                        if (reader[0].ToString() == currPerso[0].ToString() && reader[1].ToString() == currPerso[1])
                         {
                             string dateDeb = reader[2].ToString();
                             string dateFin = reader[3].ToString();
@@ -384,7 +383,7 @@ namespace GestionPersonnelLogin
                 cmd.Connection = dbConnect;
                 cmd.CommandText = dbQuery;
                 //ADD ABSENCE PARAMS
-                cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = currPersoInfo[2];
+                cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = currPersoInfo[0];
                 cmd.Parameters.Add("@firstname", MySqlDbType.VarChar).Value = currPersoInfo[1];
                 cmd.Parameters.Add("@dateDeb", MySqlDbType.VarChar).Value = dateDeb;
                 cmd.Parameters.Add("@dateFin", MySqlDbType.VarChar).Value = dateFin;
@@ -416,6 +415,7 @@ namespace GestionPersonnelLogin
         /// <param name="newMotif"></param>
         public static void dbUpdateAbs(string[] currPersoInfo, string initDateDeb, string initDateFin, string initMotif, string newDateDeb, string newDateFin, string newMotif)
         {
+            Console.WriteLine(currPersoInfo[0] + " " + currPersoInfo[1] + "Date :" + initDateDeb + "au" + initDateFin + "motif" + initMotif + "nouveau : " + newDateDeb + " " + newDateFin + " " + newMotif);
             MySqlConnection dbConnect = Model.getDBConnection();
             dbConnect.Open();
             try
@@ -425,7 +425,7 @@ namespace GestionPersonnelLogin
                 cmd.Connection = dbConnect;
                 cmd.CommandText = dbQuery;
                 //CONDITIONS PARAMS
-                cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = currPersoInfo[2];
+                cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = currPersoInfo[0];
                 cmd.Parameters.Add("@firstname", MySqlDbType.VarChar).Value = currPersoInfo[1];
                 cmd.Parameters.Add("@dateDeb", MySqlDbType.VarChar).Value = initDateDeb;
                 cmd.Parameters.Add("@dateFin", MySqlDbType.VarChar).Value = initDateFin;
@@ -467,7 +467,7 @@ namespace GestionPersonnelLogin
                 cmd.Connection = dbConnect;
                 cmd.CommandText = dbQuery;
                 //DELETE ALL ABSENCE ROW PARAMS
-                cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = currPersoInfo[2];
+                cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = currPersoInfo[0];
                 cmd.Parameters.Add("@firstname", MySqlDbType.VarChar).Value = currPersoInfo[1];
                 cmd.Parameters.Add("@dateDeb", MySqlDbType.VarChar).Value = currDateDeb;
                 cmd.Parameters.Add("@dateFin", MySqlDbType.VarChar).Value = currDateFin;

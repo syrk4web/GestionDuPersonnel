@@ -14,11 +14,11 @@ namespace GestionPersonnelLogin
         {
             titlelogin.Visible = isShow;
             btnLogin.Visible = isShow;
-            lblLogError.Visible = isShow;
             lblUsername.Visible = isShow;
             txtUsername.Visible = isShow;
             lblPassword.Visible = isShow;
             txtPassword.Visible = isShow;
+            lblLogError.Visible = false;
         }
         /// <summary>
         ///MAIN MENU VIEW COMPONENTS
@@ -109,6 +109,7 @@ namespace GestionPersonnelLogin
             lstMotif.Visible = isShow;
             btnAddModifAbs.Visible = isShow;
             btnAnnuleAddModifAbs.Visible = isShow;
+            lblAddOrModifError.Visible = false;
         }
         /// <summary>
         ///SUPPR ABSENCE OF EMPLOYEE MENU VIEW COMPONENTS
