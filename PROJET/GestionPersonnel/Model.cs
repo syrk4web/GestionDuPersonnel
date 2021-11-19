@@ -145,7 +145,7 @@ namespace GestionPersonnelLogin
         {
             MySqlConnection dbConnect = Model.getDBConnection();
             dbConnect.Open();
-            string dbQuery = "SELECT * FROM bts.service";
+            string dbQuery = "SELECT * FROM bts.motif";
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = dbConnect;
             cmd.CommandText = dbQuery;

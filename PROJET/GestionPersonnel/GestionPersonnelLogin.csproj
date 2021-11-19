@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CA0A568C-D37A-4551-AFEE-52CB9481AF5F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>GestionPersonnel</RootNamespace>
-    <AssemblyName>GestionPersonnel</AssemblyName>
+    <RootNamespace>GestionDuPersonnel</RootNamespace>
+    <AssemblyName>GestionDuPersonnel</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -61,7 +61,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C3B44747EA43E47B9D027015C5E8DD098E278AF8</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>CE7671DF27D5A7231D425697231C4E76FF8BA460</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>GestionPersonnelLogin_TemporaryKey.pfx</ManifestKeyFile>

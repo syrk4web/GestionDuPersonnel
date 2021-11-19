@@ -691,7 +691,7 @@ namespace GestionPersonnelLogin
             this.lblAddModifAbsDateDeb.AccessibleName = "lblAddModifAbsDateDeb";
             this.lblAddModifAbsDateDeb.AutoSize = true;
             this.lblAddModifAbsDateDeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblAddModifAbsDateDeb.Location = new System.Drawing.Point(261, 155);
+            this.lblAddModifAbsDateDeb.Location = new System.Drawing.Point(261, 98);
             this.lblAddModifAbsDateDeb.Name = "lblAddModifAbsDateDeb";
             this.lblAddModifAbsDateDeb.Size = new System.Drawing.Size(78, 17);
             this.lblAddModifAbsDateDeb.TabIndex = 21;
@@ -702,7 +702,7 @@ namespace GestionPersonnelLogin
             // 
             this.dateDebAddModifAbs.AccessibleName = "dateDebAddModifAbs";
             this.dateDebAddModifAbs.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateDebAddModifAbs.Location = new System.Drawing.Point(350, 152);
+            this.dateDebAddModifAbs.Location = new System.Drawing.Point(352, 95);
             this.dateDebAddModifAbs.Name = "dateDebAddModifAbs";
             this.dateDebAddModifAbs.Size = new System.Drawing.Size(200, 20);
             this.dateDebAddModifAbs.TabIndex = 22;
@@ -713,7 +713,7 @@ namespace GestionPersonnelLogin
             this.lblAddModifAbsDateFin.AccessibleName = "lblAddModifAbsDateFin";
             this.lblAddModifAbsDateFin.AutoSize = true;
             this.lblAddModifAbsDateFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblAddModifAbsDateFin.Location = new System.Drawing.Point(261, 198);
+            this.lblAddModifAbsDateFin.Location = new System.Drawing.Point(262, 126);
             this.lblAddModifAbsDateFin.Name = "lblAddModifAbsDateFin";
             this.lblAddModifAbsDateFin.Size = new System.Drawing.Size(57, 17);
             this.lblAddModifAbsDateFin.TabIndex = 23;
@@ -724,7 +724,7 @@ namespace GestionPersonnelLogin
             // 
             this.dateFinAddModifAbs.AccessibleName = "dateFinAddModifAbs";
             this.dateFinAddModifAbs.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateFinAddModifAbs.Location = new System.Drawing.Point(350, 199);
+            this.dateFinAddModifAbs.Location = new System.Drawing.Point(352, 126);
             this.dateFinAddModifAbs.Name = "dateFinAddModifAbs";
             this.dateFinAddModifAbs.Size = new System.Drawing.Size(200, 20);
             this.dateFinAddModifAbs.TabIndex = 24;
@@ -735,7 +735,7 @@ namespace GestionPersonnelLogin
             this.lblAddModifAbsMotif.AccessibleName = "lblAddModifAbsMotif";
             this.lblAddModifAbsMotif.AutoSize = true;
             this.lblAddModifAbsMotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblAddModifAbsMotif.Location = new System.Drawing.Point(261, 235);
+            this.lblAddModifAbsMotif.Location = new System.Drawing.Point(261, 159);
             this.lblAddModifAbsMotif.Name = "lblAddModifAbsMotif";
             this.lblAddModifAbsMotif.Size = new System.Drawing.Size(38, 17);
             this.lblAddModifAbsMotif.TabIndex = 26;
@@ -843,7 +843,7 @@ namespace GestionPersonnelLogin
             this.lstMotif.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lstMotif.FormattingEnabled = true;
             this.lstMotif.ItemHeight = 16;
-            this.lstMotif.Location = new System.Drawing.Point(350, 235);
+            this.lstMotif.Location = new System.Drawing.Point(350, 159);
             this.lstMotif.Name = "lstMotif";
             this.lstMotif.Size = new System.Drawing.Size(202, 100);
             this.lstMotif.TabIndex = 34;
@@ -854,17 +854,18 @@ namespace GestionPersonnelLogin
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lstMotif);
+            this.Controls.Add(this.lblAddModifAbsMotif);
+            this.Controls.Add(this.dateFinAddModifAbs);
+            this.Controls.Add(this.lblAddModifAbsDateFin);
+            this.Controls.Add(this.dateDebAddModifAbs);
+            this.Controls.Add(this.lblAddModifAbsDateDeb);
             this.Controls.Add(this.btnAbsBack);
             this.Controls.Add(this.btnAbsSuppr);
             this.Controls.Add(this.btnAbsAdd);
             this.Controls.Add(this.lblAbsActions);
             this.Controls.Add(this.lblAbsSuppr);
             this.Controls.Add(this.btnAnnuleAddModifAbs);
-            this.Controls.Add(this.lblAddModifAbsMotif);
-            this.Controls.Add(this.dateFinAddModifAbs);
-            this.Controls.Add(this.lblAddModifAbsDateFin);
-            this.Controls.Add(this.dateDebAddModifAbs);
-            this.Controls.Add(this.lblAddModifAbsDateDeb);
             this.Controls.Add(this.btnAnnuleSuppr);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
@@ -888,13 +889,10 @@ namespace GestionPersonnelLogin
             this.Controls.Add(this.lblAbsEmployeID);
             this.Controls.Add(this.titleAbs);
             this.Controls.Add(this.lblSupprInfoPerso);
-            this.Controls.Add(this.lstAffectation);
-            this.Controls.Add(this.lstPersonnel);
             this.Controls.Add(this.lblSupprPersonnel);
             this.Controls.Add(this.lblAbsSupprInfo);
             this.Controls.Add(this.titleAbsSuppr);
             this.Controls.Add(this.titlelogin);
-            this.Controls.Add(this.lstAbs);
             this.Controls.Add(this.btnAbsSupprConfirm);
             this.Controls.Add(this.btnAnnuleSupprAbs);
             this.Controls.Add(this.lblPersonnelError);
@@ -913,7 +911,9 @@ namespace GestionPersonnelLogin
             this.Controls.Add(this.btnSuppr);
             this.Controls.Add(this.lblLogError);
             this.Controls.Add(this.btnAddModifAbs);
-            this.Controls.Add(this.lstMotif);
+            this.Controls.Add(this.lstAffectation);
+            this.Controls.Add(this.lstPersonnel);
+            this.Controls.Add(this.lstAbs);
             this.Name = "Form1";
             this.Text = "Gestion Du Personnel";
             this.ResumeLayout(false);
